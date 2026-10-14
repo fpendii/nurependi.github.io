@@ -1,364 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nurependi's Portfolio - Web Developer & 3D Environment Artist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom CSS for Hero Section Background */
-        .hero-background {
-            /* Ensure this image URL is valid and accessible. Please replace with your chosen image. */
-            background-image: url('https://images.unsplash.com/photo-1517694712242-bc0f12463eeb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            /* Required for overlay */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nurependi's Download Center - Aplikasi &amp; Game Buatan Sendiri</title>
+<style>
+  /* ====== GAYA JADUL: Windows 95 / web 1999 ====== */
+  :root {
+    --abu: #c0c0c0;
+    --abu-gelap: #808080;
+    --putih: #ffffff;
+    --hitam: #000000;
+    --biru: #000080;
+    --biru-muda: #1084d0;
+    --teal: #008080;
+    --kuning: #ffffcc;
+    --merah: #cc0000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 10px;
+    background-color: var(--teal);
+    /* pola kotak-kotak khas wallpaper lama */
+    background-image:
+      linear-gradient(45deg, rgba(0,0,0,.12) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.12) 75%),
+      linear-gradient(45deg, rgba(0,0,0,.12) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.12) 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+    color: var(--hitam);
+    font-family: Verdana, Tahoma, "Trebuchet MS", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  a { color: #0000ee; }
+  a:visited { color: #551a8b; }
+  a:hover { color: var(--merah); }
 
-        .hero-background::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /* Dark grey background color with 70% opacity */
-            background-color: rgba(29, 29, 36, 0.7);
-            z-index: 1;
-        }
+  #halaman { max-width: 860px; margin: 0 auto; }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            /* Ensures content is above the overlay */
-        }
-    </style>
+  /* ---------- jendela ---------- */
+  .jendela {
+    background: var(--abu);
+    border: 2px solid;
+    border-color: var(--putih) var(--hitam) var(--hitam) var(--putih);
+    box-shadow: inset -1px -1px 0 var(--abu-gelap), inset 1px 1px 0 #dfdfdf, 4px 4px 0 rgba(0,0,0,.45);
+    margin-bottom: 18px;
+    padding: 3px;
+  }
+  .judul-bar {
+    background: linear-gradient(90deg, var(--biru), var(--biru-muda));
+    color: var(--putih);
+    font-weight: bold;
+    padding: 3px 4px 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Tahoma, Verdana, sans-serif;
+    font-size: 13px;
+  }
+  .tombol-bar { display: flex; gap: 2px; }
+  .tombol-bar span {
+    width: 16px; height: 14px;
+    background: var(--abu);
+    color: var(--hitam);
+    font-size: 11px; line-height: 12px;
+    text-align: center;
+    border: 1px solid;
+    border-color: var(--putih) var(--hitam) var(--hitam) var(--putih);
+    font-family: Arial, sans-serif;
+  }
+  .isi { padding: 10px 12px; }
+  .cekung {
+    background: var(--putih);
+    border: 2px solid;
+    border-color: var(--abu-gelap) var(--putih) var(--putih) var(--abu-gelap);
+    padding: 8px 10px;
+  }
+
+  /* ---------- header ---------- */
+  .banner {
+    text-align: center;
+    background: var(--hitam);
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    padding: 14px 8px;
+    border: 2px solid;
+    border-color: var(--abu-gelap) var(--putih) var(--putih) var(--abu-gelap);
+  }
+  .banner h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px #00ff00;
+  }
+  .banner p { margin: 4px 0 0; font-size: 14px; }
+  .kedip { animation: kedip 1s steps(1) infinite; }
+  @keyframes kedip { 50% { visibility: hidden; } }
+
+  .marquee-bar {
+    background: var(--kuning);
+    border: 2px solid;
+    border-color: var(--abu-gelap) var(--putih) var(--putih) var(--abu-gelap);
+    padding: 3px;
+    margin: 8px 0;
+    font-weight: bold;
+    color: var(--merah);
+  }
+
+  /* ---------- menu ---------- */
+  .menu { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 0; }
+  .btn95, .menu a {
+    display: inline-block;
+    background: var(--abu);
+    color: var(--hitam) !important;
+    text-decoration: none;
+    padding: 4px 14px;
+    border: 2px solid;
+    border-color: var(--putih) var(--hitam) var(--hitam) var(--putih);
+    box-shadow: inset -1px -1px 0 var(--abu-gelap);
+    font-family: Tahoma, Verdana, sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .btn95:active, .menu a:active {
+    border-color: var(--hitam) var(--putih) var(--putih) var(--hitam);
+    box-shadow: inset 1px 1px 0 var(--abu-gelap);
+    padding: 5px 13px 3px 15px;
+  }
+  .btn-unduh {
+    font-weight: bold;
+    background: #00a000;
+    color: var(--putih) !important;
+    font-size: 15px;
+    padding: 7px 18px;
+  }
+
+  h2.garis {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--biru);
+    border-bottom: 2px groove var(--abu-gelap);
+    padding-bottom: 3px;
+  }
+  hr { border: 0; border-top: 2px groove var(--abu-gelap); margin: 12px 0; }
+
+  /* ---------- tabel unduhan ---------- */
+  table.unduhan {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    background: var(--abu-gelap);
+  }
+  table.unduhan th {
+    background: var(--biru);
+    color: var(--putih);
+    text-align: left;
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+  table.unduhan td {
+    background: var(--putih);
+    padding: 8px 6px;
+    vertical-align: top;
+  }
+  table.unduhan tr:nth-child(even) td { background: #eeeeee; }
+  .ikon-app {
+    width: 72px; height: 72px;
+    object-fit: cover;
+    border: 2px solid;
+    border-color: var(--abu-gelap) var(--putih) var(--putih) var(--abu-gelap);
+    background: var(--hitam);
+    display: block;
+  }
+  .baru {
+    background: var(--merah); color: var(--putih);
+    font-size: 10px; padding: 0 4px; font-weight: bold;
+    animation: kedip 1s steps(1) infinite;
+  }
+  .spek { font-size: 11px; color: #444; }
+
+  /* ---------- profil ---------- */
+  .profil { display: flex; gap: 14px; align-items: flex-start; }
+  .profil img {
+    width: 130px; height: 130px; object-fit: cover;
+    border: 3px ridge var(--abu-gelap);
+    flex-shrink: 0;
+  }
+
+  /* ---------- daftar link ---------- */
+  ul.dir { list-style: square; padding-left: 22px; margin: 6px 0; }
+  ul.dir li { margin-bottom: 4px; }
+
+  /* ---------- form ---------- */
+  label { font-weight: bold; display: block; margin-top: 6px; }
+  input[type=text], input[type=email], textarea {
+    width: 100%;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    padding: 3px 5px;
+    border: 2px solid;
+    border-color: var(--abu-gelap) var(--putih) var(--putih) var(--abu-gelap);
+    background: var(--putih);
+  }
+
+  /* ---------- footer ---------- */
+  .counter {
+    display: inline-block;
+    background: var(--hitam);
+    color: #ff3030;
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 1px 8px;
+    border: 2px inset var(--abu-gelap);
+  }
+  footer { text-align: center; font-size: 11px; color: var(--hitam); }
+  .stiker {
+    display: inline-block;
+    border: 1px solid var(--hitam);
+    background: var(--abu);
+    padding: 1px 6px;
+    margin: 2px;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    .profil { flex-direction: column; align-items: center; text-align: center; }
+    table.unduhan th:nth-child(3), table.unduhan td:nth-child(3) { display: none; }
+    .banner h1 { font-size: 22px; }
+  }
+</style>
 </head>
 
-<body class="font-sans antialiased bg-gray-900 text-gray-200">
+<body>
+<div id="halaman">
 
-    <header class="bg-gray-800 shadow-md p-4">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-400">Nurependi</a>
-            <ul class="flex space-x-6">
-                <li><a href="#about" class="hover:text-indigo-400 transition duration-300">About</a></li>
-                <li><a href="#skills" class="hover:text-indigo-400 transition duration-300">Skills</a></li>
-                <li><a href="#portfolio-web" class="hover:text-indigo-400 transition duration-300">Web Portfolio</a>
-                </li>
-                <li><a href="#portfolio-3d" class="hover:text-indigo-400 transition duration-300">3D Portfolio</a></li>
-                <li><a href="#contact" class="hover:text-indigo-400 transition duration-300">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- ===== HEADER ===== -->
+  <div class="jendela">
+    <div class="judul-bar">
+      <span>C:\NUREPENDI\DOWNLOAD_CENTER.EXE</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <div class="banner">
+        <h1>*** NUREPENDI'S DOWNLOAD CENTER ***</h1>
+        <p>Aplikasi &amp; Game Buatan Sendiri - Gratis Unduh!<span class="kedip"> _</span></p>
+      </div>
 
-    <section id="hero" class="hero-background text-white py-20 text-center">
-        <div class="container mx-auto hero-content">
-            <h1 class="text-5xl font-extrabold mb-4">Hello, I'm Nurependi</h1>
-            <p class="text-xl mb-8">A <strong>Web Developer</strong> focused on <strong>developing robust
-                    backend functionalities and logic</strong>, and a <strong>3D Environment Artist</strong>
-                who creates immersive game assets and environments.</p>
-            <a href="#portfolio-web"
-                class="bg-indigo-400 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-300 transition duration-300">View
-                My Portfolio</a>
+      <div class="marquee-bar">
+        <marquee scrollamount="4">&gt;&gt;&gt; Selamat datang di Download Center! &gt;&gt;&gt; Aplikasi Augmented Reality TOGA sudah tersedia di Google Play &gt;&gt;&gt; Aplikasi baru segera menyusul, kunjungi terus ya! &gt;&gt;&gt;</marquee>
+      </div>
+
+      <div class="menu">
+        <a href="#unduh">[ Unduh Aplikasi ]</a>
+        <a href="#tentang">[ Tentang Saya ]</a>
+        <a href="#web">[ Proyek Website ]</a>
+        <a href="#3d">[ Galeri 3D ]</a>
+        <a href="#kontak">[ Kontak ]</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== UNDUH APLIKASI ===== -->
+  <div class="jendela" id="unduh">
+    <div class="judul-bar">
+      <span>Unduh Aplikasi - Windows Explorer</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <h2 class="garis">&#128190; Daftar Aplikasi</h2>
+      <p>Pilih aplikasi di bawah lalu klik tombol <b>UNDUH</b>. Semua dibuat sendiri oleh saya, dari kode sampai model 3D-nya.</p>
+
+      <table class="unduhan">
+        <tr>
+          <th width="84">Ikon</th>
+          <th>Nama &amp; Deskripsi</th>
+          <th width="150">Info</th>
+          <th width="110">Unduh</th>
+        </tr>
+
+        <!-- APLIKASI 1: nyata -->
+        <tr>
+          <td><img class="ikon-app" src="image/aplikasi easy ternak.png" alt="Ikon Augmented Reality TOGA"></td>
+          <td>
+            <b>Augmented Reality TOGA</b> <span class="baru">NEW</span><br>
+            Aplikasi Augmented Reality untuk mengenal Tanaman Obat Keluarga (TOGA) lewat kamera ponsel. Dibuat dengan Unity, model 3D dibuat dengan Blender.
+          </td>
+          <td class="spek">
+            Platform: Android<br>
+            Teknologi: Unity, C#, Blender<br>
+            Sumber: Google Play
+          </td>
+          <td>
+            <a class="btn95 btn-unduh" href="https://play.google.com/store/apps/details?id=com.Venture.AugmentedRealityTOGA" target="_blank">UNDUH</a>
+          </td>
+        </tr>
+
+        <!--
+          ====== CARA MENAMBAH APLIKASI BARU ======
+          Salin satu blok <tr> ... </tr> di atas, lalu ganti:
+          - src gambar ikon
+          - nama & deskripsi
+          - info platform / versi / ukuran
+          - href tombol UNDUH (link Play Store, Google Drive, atau file .apk / .zip di folder "download/")
+        -->
+
+        <!-- Slot kosong (ganti kalau sudah ada aplikasi lain) -->
+        <tr>
+          <td><div class="ikon-app" style="display:flex;align-items:center;justify-content:center;color:#00ff00;font-family:'Courier New',monospace;font-size:28px;">?</div></td>
+          <td>
+            <b>Aplikasi Berikutnya</b><br>
+            Masih dalam pengerjaan. Cek lagi nanti!
+          </td>
+          <td class="spek">Platform: -<br>Status: Dalam proses</td>
+          <td><span class="btn95" style="color:#808080 !important;cursor:not-allowed;">SEGERA</span></td>
+        </tr>
+      </table>
+
+      <hr>
+      <div class="cekung" style="background:var(--kuning);">
+        <b>&#9888; Catatan:</b> Aplikasi Android dapat dipasang lewat Google Play. Jika mengunduh file APK secara manual, aktifkan dulu <i>"Instal dari sumber tidak dikenal"</i> di pengaturan ponsel.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TENTANG ===== -->
+  <div class="jendela" id="tentang">
+    <div class="judul-bar">
+      <span>Tentang Saya.txt - Notepad</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <div class="profil">
+        <img src="image/foto profil.png" alt="Foto profil Nurependi">
+        <div>
+          <h2 class="garis">&#128100; Halo, saya Nurependi!</h2>
+          <p>Saya <b>Web Developer</b> (3 tahun) yang fokus di sisi <b>backend</b>, dan <b>3D Artist</b> (5 tahun) yang membuat aset dan lingkungan game dengan Blender.</p>
+          <p>Di luar kerjaan, saya suka main game dan bikin model 3D. Dari situlah ide aplikasi-aplikasi di halaman ini muncul.</p>
         </div>
-    </section>
+      </div>
+      <hr>
+      <b>Kemampuan:</b>
+      <ul class="dir">
+        <li><b>Backend:</b> PHP (Laravel, CodeIgniter 4), REST API, MySQL, PostgreSQL</li>
+        <li><b>Frontend:</b> HTML5, CSS3, JavaScript, jQuery, Bootstrap, Tailwind CSS</li>
+        <li><b>3D:</b> Blender (Modeling, Sculpting, UV, Retopology, Baking), PBR Texturing, Cycles/Eevee</li>
+        <li><b>Game:</b> Unity dasar, optimasi aset game</li>
+        <li><b>Tools:</b> Git, GitHub/GitLab, Krita, Adobe Premiere Pro</li>
+      </ul>
+    </div>
+  </div>
 
-    <section id="about" class="py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-indigo-400">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center md:space-x-8">
-                <div class="md:w-1/3 mb-6 md:mb-0">
-                    <img src="image/foto profil.png" alt="Nurependi's Profile Photo"
-                        class="rounded-full shadow-lg mx-auto border-2 border-indigo-500">
-                </div>
-                <div class="md:w-2/3 text-lg leading-relaxed text-gray-300">
-                    <p class="mb-4">I am <strong>Nurependi</strong>. I have <strong>3 years</strong> of experience
-                        in <strong>web development</strong>, particularly in building efficient and logical systems with a focus on
-                        core functions. For interfaces, I often adapt and integrate existing templates.</p>
-                    <p class="mb-4">Additionally, I have <strong>5 years</strong> of experience in <strong>3D
-                            modeling</strong>, and currently, I focus on <strong>creating 3D assets and environments
-                            ready for use in game development</strong>.</p>
-                    <p>My expertise in <strong>web architecture and 3D game design</strong> allows me to
-                        contribute to both the technical and visual aspects of digital projects. I believe that <strong>strong systems
-                            are supported by solid technical implementation, complemented by effective visuals</strong>. Outside
-                        of work, I enjoy <strong>3D modeling</strong> and
-                        <strong>playing games</strong>, which contribute to the development of my skills and creativity.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ===== WEB ===== -->
+  <div class="jendela" id="web">
+    <div class="judul-bar">
+      <span>Proyek Website - Internet Explorer</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <h2 class="garis">&#127760; Proyek Website</h2>
+      <table class="unduhan">
+        <tr><th width="90">Gambar</th><th>Proyek</th><th width="110">Kunjungi</th></tr>
+        <tr>
+          <td><img class="ikon-app" src="image/website baratala.png" alt="Website Baratala"></td>
+          <td><b>Website Baratala Tuntung Pandang</b><br>Pengelolaan permintaan dari staf Pd Baratala Tuntung Pandang.<br><span class="spek">Laravel 10, MySQL</span></td>
+          <td><a class="btn95" href="https://pdbaratala.com/" target="_blank">BUKA</a></td>
+        </tr>
+        <tr>
+          <td><img class="ikon-app" src="image/website line pro.png" alt="Website Line Pro"></td>
+          <td><b>Line Pro Website</b><br>Pengelolaan permintaan staf &amp; mahasiswa Politala (Politeknik Negeri Tanah Laut).<br><span class="spek">Laravel 10, MySQL, Bootstrap</span></td>
+          <td><a class="btn95" href="https://linepro.politala.ac.id/" target="_blank">BUKA</a></td>
+        </tr>
+        <tr>
+          <td><img class="ikon-app" src="image/website ratna education.png" alt="Website Ratna Education"></td>
+          <td><b>Ratna Education</b><br>Website profil Ratna Education.<br><span class="spek">Laravel 10, MySQL, Bootstrap</span></td>
+          <td><a class="btn95" href="https://ratnaeducation.batuah.tech/" target="_blank">BUKA</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-    <section id="skills" class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-indigo-400">My Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl font-semibold mb-2 text-indigo-300">Web Development (Backend)</h3>
-                    <p class="text-gray-300">PHP (Laravel, CodeIgniter 4), RESTful API Design, MySQL, PostgreSQL</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl font-semibold mb-2 text-indigo-300">Web Development (Frontend)</h3>
-                    <p class="text-gray-300">Template Integration (Bootstrap, Tailwind CSS), HTML5, CSS3, JavaScript,
-                        jQuery</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl font-semibold mb-2 text-indigo-300">Web Infrastructure & Tools</h3>
-                    <p class="text-gray-300">Git, GitHub/GitLab</p>
-                </div>
+  <!-- ===== 3D ===== -->
+  <div class="jendela" id="3d">
+    <div class="judul-bar">
+      <span>Galeri 3D - Paint</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <h2 class="garis">&#127912; Galeri 3D &amp; Animasi</h2>
+      <p>Karya 3D yang saya buat dengan Blender. Klik judulnya untuk melihat.</p>
+      <div class="cekung">
+        <ul class="dir">
+          <li><a href="https://youtu.be/W6N_N907IbU?si=yFHSvzkYjgD3tDqd" target="_blank">Animasi "Lampu Harapan"</a> - Finalis Gemastik Animasi 2024</li>
+          <li><a href="https://www.youtube.com/watch?v=mAgyx1QE8Wg" target="_blank">Animasi pendek bertema Cyberpunk</a></li>
+          <li><a href="https://www.instagram.com/p/DEFg4wcB8e2/" target="_blank">Model 3D Kayu (Stylized)</a> - aset game</li>
+          <li><a href="https://www.instagram.com/p/DEFg4wcB8e2/" target="_blank">Model 3D Karakter Boss Suluh</a> - aset game</li>
+          <li><a href="https://www.instagram.com/reel/DDzT3GjhGuN/" target="_blank">Animasi 3D Pixel: Sunset</a></li>
+          <li><a href="https://www.instagram.com/p/Cr5fRLSPNl_/" target="_blank">Model 3D Signal Bot</a> &amp; Animasi 3D Pixel: Robot</li>
+          <li><a href="https://www.instagram.com/reel/DBl_QADBu-T/" target="_blank">Video 3D semi-realistis (toko buku)</a></li>
+          <li><a href="https://www.linkedin.com/posts/nur-ependi-95642928b_minecraft-3danimation-blender3d-activity-7323398355785502723-YfGo" target="_blank">Animasi pendek Minecraft</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl font-semibold mb-2 text-indigo-300">3D Modeling (Game Environment)</h3>
-                    <p class="text-gray-300">Blender (Modeling, Sculpting, UV Unwrapping, Retopology, Baking Textures)
-                    </p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl font-semibold mb-2 text-indigo-300">Texturing & Rendering</h3>
-                    <p class="text-gray-300">Blender Cycles/Eevee, PBR Texturing, Lighting,
-                        Compositing</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl font-semibold mb-2 text-indigo-300">Game Design & Integration</h3>
-                    <p class="text-gray-300">Environment Design Concept, Game Asset Optimization, Basic Unity</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ===== KONTAK ===== -->
+  <div class="jendela" id="kontak">
+    <div class="judul-bar">
+      <span>Buku Tamu - Kirim Pesan</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <h2 class="garis">&#9993; Hubungi Saya</h2>
+      <p>Ada saran, laporan bug, atau mau kerja sama? Tulis di sini ya.</p>
+      <form action="https://formspree.io/f/xqalaapy" method="POST">
+        <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Pesan:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <p>
+          <button type="submit" class="btn95">Kirim</button>
+          <button type="reset" class="btn95">Hapus</button>
+        </p>
+      </form>
+    </div>
+  </div>
 
+  <!-- ===== FOOTER ===== -->
+  <div class="jendela">
+    <div class="isi" style="text-align:center;">
+      <p>Kamu pengunjung ke-<span class="counter" id="counter">000001</span> di browser ini</p>
+      <p>
+        <span class="stiker">Dibuat dengan Notepad &amp; Kopi</span>
+        <span class="stiker">Paling pas dilihat 800x600</span>
+        <span class="stiker">Tanpa Flash!</span>
+      </p>
+      <footer>
+        &copy; 2025 Nurependi. Hak cipta dilindungi.<br>
+        <a href="https://linkedin.com/in/nurependi" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/nurependi" target="_blank">GitHub</a> |
+        <a href="https://twitter.com/nurependi" target="_blank">Twitter</a> |
+        <a href="#halaman">&#9650; Ke atas</a>
+      </footer>
+    </div>
+  </div>
 
-    <section id="portfolio-web" class="py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-indigo-400">Website Portfolio</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/website baratala.png"
-                        alt="Screenshot Web Project" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Website Baratala Tuntung Pandang</h3>
-                        <p class="text-gray-300 mb-4">Website for managing requests from staff of Pd Baratala Tuntung Pandang.</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Laravel 10, MySQL,</p>
-                        <a href="https://pdbaratala.com/" target="_blank"
-                            class="text-indigo-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/aplikasi easy ternak.png"
-                        alt="Screenshot Web Project" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Augmented Reality TOGA Application</h3>
-                        <p class="text-gray-300 mb-4">Augmented Reality TOGA application created using Unity.</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Unity, C#, Blender</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.Venture.AugmentedRealityTOGA" target="_blank"
-                            class="text-indigo-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/website line pro.png"
-                        alt="Screenshot CI4 Web Application" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Line Pro Website</h3>
-                        <p class="text-gray-300 mb-4">Website for managing requests from staff or students of Politala at Tanah Laut State Polytechnic.</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Laravel 10, MySQL,
-                            Bootstrap Template Integration.</p>
-                        <a href="https://linepro.politala.ac.id/" target="_blank"
-                            class="text-indigo-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/website ratna education.png"
-                        alt="Screenshot CI4 Web Application" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Ratna Education Website</h3>
-                        <p class="text-gray-300 mb-4">Ratna Education Profile Website.</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Laravel 10, MySQL,
-                            Bootstrap Template Integration.</p>
-                        <a href="https://ratnaeducation.batuah.tech/" target="_blank"
-                            class="text-indigo-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
 
-
-    <section id="portfolio-3d" class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-indigo-400">3D Modeling Portfolio</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/thumnail lampu harapan.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Animation Titled "Lamp of Hope"</h3>
-                        <p class="text-gray-300 mb-4">3D animation titled "Lamp of Hope" using Blender. For
-                            Gemastik Animation Competition 2024 Finalist</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, Animation),
-                            Krita (Painting), Adobe Premiere Pro (Editing).</p>
-                        <a href="https://youtu.be/W6N_N907IbU?si=yFHSvzkYjgD3tDqd" target="_blank"
-                            class="text-indigo-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/thumnail animasi cyberpunk.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Short Animation with Cyberpunk Theme
-                        </h3>
-                        <p class="text-gray-300 mb-4">3D animation with a Cyberpunk theme using Blender. Made
-                            for the purpose of learning 3D Modeling and 3D Animation.</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing)</p>
-                        <a href="https://www.youtube.com/watch?v=mAgyx1QE8Wg" target="_blank"
-                            class="text-indigo-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/3d model kayu.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Stylized Wood 3D Model</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">Stylized Wood 3D Model using Blender. For game assets</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing)</p>
-                        <a href="https://www.instagram.com/p/DEFg4wcB8e2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/3d model bos suluh.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Boss Suluh Character 3D Model</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">Boss Suluh Character 3D Model using Blender. For game assets
-                        </p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing)</p>
-                        <a href="https://www.instagram.com/p/DEFg4wcB8e2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/thumnail sunset video singkat.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Short Pixel 3D Animation</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">Short animation with a sunset theme using Blender, pixel style</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing), Krita (Painting), Adobe Premiere Pro (Editing).</p>
-                        <a href="https://www.instagram.com/reel/DDzT3GjhGuN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/3d model signal bot.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Signal Bot 3D Model</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">3D Model Character
-                            Blender Eevee</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing)</p>
-                        <a href="https://www.instagram.com/p/Cr5fRLSPNl_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/thumnail robot video singkat.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Short Pixel 3D Animation</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">Short animation with a robot theme using Blender, pixel style</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing), Krita (Painting), Adobe Premiere Pro (Editing).</p>
-                        <a href="https://www.instagram.com/p/Cr5fRLSPNl_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/thumnail toko buku video singkat.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Semi-Realistic 3D Video</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">Semi-Realistic 3D video created for learning purposes</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing), Krita (Painting), Adobe Premiere Pro (Editing).</p>
-                        <a href="https://www.instagram.com/reel/DBl_QADBu-T/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-                    <img src="image/thumnail animasi minecraft singkat.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-indigo-300">Short Minecraft Animation</h3>
-                        </h3>
-                        <p class="text-gray-300 mb-4">Short animation with a robot theme using Blender, pixel style</p>
-                        <p class="text-sm text-gray-400 mb-4"><strong>Technology:</strong> Blender (Modeling, UVs,
-                            Texturing), Krita (Painting), Adobe Premiere Pro (Editing).</p>
-                        <a href="https://www.linkedin.com/posts/nur-ependi-95642928b_minecraft-3danimation-blender3d-activity-7323398355785502723-YfGo?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEZdRBIBjRs_o620lCg9eA9gA8c36_VM8m4"
-                            target="_blank" class="text-indigo-400 hover:underline font-semibold">View Project
-                            →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-indigo-400">Contact Me</h2>
-            <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-md">
-                <p class="text-lg text-center mb-6 text-gray-300">For collaborations or further inquiries, please
-                    contact me.</p>
-                <form action="https://formspree.io/f/xqalaapy" method="POST" class="space-y-4">
-                    <div>
-                        <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html">
-                        <label for="name" class="block text-sm font-medium text-gray-400">Full Name</label>
-                        <input type="text" id="name" name="name"
-                            class="mt-1 block w-full border border-gray-600 rounded-md shadow-sm p-2 bg-gray-700 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
-                            required>
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-400">Email Address</label>
-                        <input type="email" id="email" name="email"
-                            class="mt-1 block w-full border border-gray-600 rounded-md shadow-sm p-2 bg-gray-700 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
-                            required>
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-400">Message</label>
-                        <textarea id="message" name="message" rows="5"
-                            class="mt-1 block w-full border border-gray-600 rounded-md shadow-sm p-2 bg-gray-700 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
-                            required></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit"
-                            class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300">Send
-                            Message</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
-        <div class="container mx-auto">
-            <p>© 2025 Nurependi. All Rights Reserved.</p>
-            <div class="mt-4 space-x-4">
-                <a href="https://linkedin.com/in/nurependi" target="_blank"
-                    class="hover:text-indigo-400 transition duration-300">LinkedIn</a>
-                <a href="https://github.com/nurependi" target="_blank"
-                    class="hover:text-indigo-400 transition duration-300">GitHub</a>
-                <a href="https://twitter.com/nurependi" target="_blank"
-                    class="hover:text-indigo-400 transition duration-300">Twitter</a>
-            </div>
-        </div>
-    </footer>
-
+<script>
+  // Counter jadul: menghitung berapa kali pengunjung membuka halaman ini di browsernya
+  (function () {
+    var n = 1;
+    try {
+      n = (parseInt(localStorage.getItem('np_kunjungan'), 10) || 0) + 1;
+      localStorage.setItem('np_kunjungan', n);
+    } catch (e) {}
+    document.getElementById('counter').textContent = ('000000' + n).slice(-6);
+  })();
+</script>
 </body>
-
 </html>
