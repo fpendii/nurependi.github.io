@@ -136,6 +136,40 @@
     font-size: 15px;
     padding: 7px 18px;
   }
+  .btn-donasi {
+    font-weight: bold;
+    background: #f5d942;
+    color: var(--hitam) !important;
+    font-size: 15px;
+    padding: 7px 18px;
+  }
+  .donasi-box {
+    background: var(--kuning);
+    border: 2px solid;
+    border-color: var(--putih) var(--abu-gelap) var(--abu-gelap) var(--putih);
+    padding: 12px 14px;
+    margin-top: 12px;
+  }
+  .donasi-box b {
+    color: var(--biru);
+  }
+  .donasi-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .rekening-box {
+    background: var(--putih);
+    border: 2px solid;
+    border-color: var(--abu-gelap) var(--putih) var(--putih) var(--abu-gelap);
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
 
   h2.garis {
     font-family: "Times New Roman", Times, serif;
@@ -229,28 +263,6 @@
   }
 
 
-  /* ---------- dekorasi pixel art retro di sisi halaman ---------- */
-  .pixel-dekor {
-    position: fixed;
-    z-index: 0;
-    width: 112px;
-    image-rendering: pixelated;
-    pointer-events: none;
-    opacity: .96;
-    filter: drop-shadow(4px 4px 0 rgba(0,0,0,.25));
-  }
-  .pixel-kiri { left: max(12px, calc((100vw - 1120px) / 2)); top: 155px; }
-  .pixel-kanan { right: max(12px, calc((100vw - 1120px) / 2)); top: 330px; }
-  #halaman { position: relative; z-index: 1; }
-  @media (max-width: 1100px) {
-    .pixel-dekor { width: 76px; opacity: .72; }
-    .pixel-kiri { left: 4px; }
-    .pixel-kanan { right: 4px; }
-  }
-  @media (max-width: 900px) {
-    .pixel-dekor { display: none; }
-  }
-
   @media (max-width: 640px) {
     .profil { flex-direction: column; align-items: center; text-align: center; }
     table.unduhan th:nth-child(3), table.unduhan td:nth-child(3) { display: none; }
@@ -260,55 +272,6 @@
 </head>
 
 <body>
-<!-- Dekorasi pixel art retro; hanya hiasan, tidak menghalangi tombol atau teks -->
-<svg class="pixel-dekor pixel-kiri" viewBox="0 0 112 144" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <!-- bintang pixel -->
-  <g shape-rendering="crispEdges">
-    <rect x="40" y="0" width="16" height="8" fill="#ffff00"/>
-    <rect x="32" y="8" width="32" height="8" fill="#ffff00"/>
-    <rect x="24" y="16" width="48" height="8" fill="#ffff00"/>
-    <rect x="40" y="24" width="16" height="8" fill="#ffff00"/>
-    <rect x="40" y="32" width="16" height="8" fill="#ffff00"/>
-    <rect x="8" y="56" width="24" height="8" fill="#ffffff"/>
-    <rect x="16" y="48" width="8" height="24" fill="#ffffff"/>
-    <!-- komputer retro -->
-    <rect x="8" y="88" width="96" height="48" fill="#202020"/>
-    <rect x="16" y="96" width="80" height="32" fill="#c0c0c0"/>
-    <rect x="24" y="104" width="56" height="16" fill="#000080"/>
-    <rect x="32" y="108" width="8" height="8" fill="#00ff00"/>
-    <rect x="48" y="108" width="24" height="4" fill="#00ff00"/>
-    <rect x="48" y="116" width="16" height="4" fill="#00ff00"/>
-    <rect x="40" y="136" width="32" height="8" fill="#808080"/>
-  </g>
-</svg>
-
-<svg class="pixel-dekor pixel-kanan" viewBox="0 0 112 160" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <g shape-rendering="crispEdges">
-    <!-- awan pixel -->
-    <rect x="24" y="8" width="32" height="8" fill="#ffffff"/>
-    <rect x="16" y="16" width="56" height="16" fill="#ffffff"/>
-    <rect x="8" y="24" width="72" height="8" fill="#ffffff"/>
-    <rect x="24" y="32" width="40" height="8" fill="#ffffff"/>
-    <!-- tanaman pixel dalam pot -->
-    <rect x="48" y="56" width="8" height="40" fill="#704020"/>
-    <rect x="32" y="56" width="16" height="8" fill="#00a000"/>
-    <rect x="24" y="48" width="16" height="8" fill="#00a000"/>
-    <rect x="56" y="64" width="16" height="8" fill="#00a000"/>
-    <rect x="64" y="56" width="16" height="8" fill="#00a000"/>
-    <rect x="40" y="40" width="16" height="8" fill="#00cc00"/>
-    <rect x="32" y="96" width="48" height="8" fill="#c06020"/>
-    <rect x="40" y="104" width="32" height="24" fill="#c06020"/>
-    <rect x="32" y="128" width="48" height="8" fill="#804000"/>
-    <!-- kilau pixel -->
-    <rect x="88" y="48" width="8" height="8" fill="#ffff00"/>
-    <rect x="80" y="56" width="24" height="8" fill="#ffff00"/>
-    <rect x="88" y="64" width="8" height="8" fill="#ffff00"/>
-    <rect x="8" y="120" width="8" height="8" fill="#00ffff"/>
-    <rect x="0" y="128" width="24" height="8" fill="#00ffff"/>
-    <rect x="8" y="136" width="8" height="8" fill="#00ffff"/>
-  </g>
-</svg>
-
 <div id="halaman">
 
   <!-- ===== HEADER ===== -->
@@ -328,10 +291,11 @@
       </div>
 
       <div class="menu">
-        <a href="#unduh">[ Daftar Aplikasi ]</a>
+        <a href="#unduh">[ Aplikasi &amp; Software ]</a>
         <a href="#tentang">[ Tentang Saya ]</a>
-        <a href="#web">[ Proyek Web ]</a>
-        <a href="#3d">[ Galeri 3D ]</a>
+        <!-- <a href="#3d">[ Galeri 3D ]</a> -->
+        <a href="#web">[ Portofolio Website ]</a>
+        <a href="#donasi">[ Donasi ]</a>
         <a href="#kontak">[ Kontak ]</a>
       </div>
     </div>
@@ -340,12 +304,12 @@
   <!-- ===== UNDUH APLIKASI ===== -->
   <div class="jendela" id="unduh">
     <div class="judul-bar">
-      <span>Unduh Aplikasi - Windows Explorer</span>
+      <span>Unduh Aplikasi &amp; Software - Windows Explorer</span>
       <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
     </div>
     <div class="isi">
-      <h2 class="garis">Daftar Aplikasi</h2>
-      <p>Berikut beberapa aplikasi yang saya buat.</p>
+      <h2 class="garis">Daftar Aplikasi &amp; Software</h2>
+      <p>Berikut beberapa aplikasi dan software yang saya buat.</p>
 
       <table class="unduhan">
         <tr>
@@ -373,19 +337,19 @@
         </tr>
 
         <!--
-          ====== CARA MENAMBAH APLIKASI BARU ======
+          ====== CARA MENAMBAH ITEM BARU ======
           Salin satu blok <tr> ... </tr> di atas, lalu ganti:
           - src gambar ikon
           - nama & deskripsi
           - info platform / versi / ukuran
-          - href tombol UNDUH (link Play Store, Google Drive, atau file .apk / .zip di folder "download/")
+          - href tombol UNDUH (link Play Store, Google Drive, atau file .apk / .exe / .zip di folder "download/")
         -->
 
-        <!-- Slot kosong (ganti kalau sudah ada aplikasi lain) -->
+        <!-- Slot kosong (ganti kalau sudah ada aplikasi atau software lain) -->
         <tr>
           <td><div class="ikon-app" style="display:flex;align-items:center;justify-content:center;color:#00ff00;font-family:'Courier New',monospace;font-size:28px;">?</div></td>
           <td>
-            <b>Aplikasi Berikutnya</b><br>
+            <b>Proyek Berikutnya</b><br>
             Belum tersedia.
           </td>
           <td class="spek">Platform: -<br>Status: Belum tersedia</td>
@@ -400,6 +364,35 @@
     </div>
   </div>
 
+  
+
+   <!-- ===== DONASI ===== -->
+  <div class="jendela" id="donasi">
+    <div class="judul-bar">
+      <span>Donasi - Support</span>
+      <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
+    </div>
+    <div class="isi">
+      <h2 class="garis">Donasi</h2>
+      <div class="donasi-box">
+        <b>Terima kasih atas dukungannya.</b>
+        <p>Jika Anda merasa proyek atau aplikasi ini bermanfaat, Anda bisa membantu dengan donasi melalui nomor rekening berikut:</p>
+
+        <div class="rekening-box">
+          Bank: BRI<br>
+          No. Rekening: 168401001630508<br>
+          Atas Nama: Nurependi
+        </div>
+
+        <div class="donasi-list">
+          <a class="btn95" href="#kontak">KONTAK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
   <!-- ===== TENTANG ===== -->
   <div class="jendela" id="tentang">
     <div class="judul-bar">
@@ -408,11 +401,10 @@
     </div>
     <div class="isi">
       <div class="profil">
-        <img src="image/foto profil.png" alt="Foto profil Nurependi">
+        <img src="image/foto profil.jpg" alt="Foto profil Nurependi">
         <div>
           <h2 class="garis">Tentang Saya</h2>
-          <p>Saya Nurependi, <b>Web Developer</b> (3 tahun) yang fokus di backend, dan <b>3D Artist</b> (5 tahun) yang membuat aset dan lingkungan game dengan Blender.</p>
-          <p>Di luar pekerjaan, saya bermain game dan membuat model 3D.</p>
+          <p>Saya Nurependi, <b>Web Developer</b> kurang lebih sudah 3 tahun, dan <b>3D Artist</b> sudah lima tahun belajar, walaupun masih blum jago hehe.</p>
         </div>
       </div>
       <hr>
@@ -420,9 +412,9 @@
       <ul class="dir">
         <li><b>Backend:</b> PHP (Laravel, CodeIgniter 4), REST API, MySQL, PostgreSQL</li>
         <li><b>Frontend:</b> HTML5, CSS3, JavaScript, jQuery, Bootstrap, Tailwind CSS</li>
-        <li><b>3D:</b> Blender (Modeling, Sculpting, UV, Retopology, Baking), PBR Texturing, Cycles/Eevee</li>
-        <li><b>Game:</b> Unity dasar, optimasi aset game</li>
-        <li><b>Tools:</b> Git, GitHub/GitLab, Krita, Adobe Premiere Pro</li>
+        <li><b>3D:</b> Blender (Modeling, UV, Texturing, Animation)</li>
+        <li><b>Game:</b> Unity dasar,  Godot, Roblox Studio</li>
+        <!-- <li><b>Tools:</b> Git, GitHub/GitLab, Krita, Adobe Premiere Pro</li> -->
       </ul>
     </div>
   </div>
@@ -430,11 +422,11 @@
   <!-- ===== WEB ===== -->
   <div class="jendela" id="web">
     <div class="judul-bar">
-      <span>Proyek Website - Internet Explorer</span>
+      <span>Portofolio Website</span>
       <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
     </div>
     <div class="isi">
-      <h2 class="garis">Proyek Web</h2>
+      <h2 class="garis">Pengembangan Website yang pernah saya kerjakan</h2>
       <table class="unduhan">
         <tr><th width="90">Gambar</th><th>Proyek</th><th width="110">Kunjungi</th></tr>
         <tr>
@@ -456,8 +448,9 @@
     </div>
   </div>
 
+
   <!-- ===== 3D ===== -->
-  <div class="jendela" id="3d">
+  <!-- <div class="jendela" id="3d">
     <div class="judul-bar">
       <span>Galeri 3D - Paint</span>
       <div class="tombol-bar"><span>_</span><span>&#9633;</span><span>X</span></div>
@@ -478,7 +471,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ===== KONTAK ===== -->
   <div class="jendela" id="kontak">
@@ -510,9 +503,9 @@
       <p>Kamu pengunjung ke-<span class="counter" id="counter">000001</span> di browser ini</p>
       <footer>
         &copy; 2026 Nurependi.<br>
-        <a href="https://linkedin.com/in/nurependi" target="_blank">LinkedIn</a> |
-        <a href="https://github.com/nurependi" target="_blank">GitHub</a> |
-        <a href="https://twitter.com/nurependi" target="_blank">Twitter</a> |
+        <a href="https://www.linkedin.com/in/nur-ependi/" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/fpendii" target="_blank">GitHub</a> |
+        <a href="https://www.instagram.com/fpendiii/" target="_blank">Instagram</a> |
         <a href="#halaman">&#9650; Ke atas</a>
       </footer>
     </div>
